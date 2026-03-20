@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casey J. Trejo — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --paper: #f7f4ef;
+    --accent: #2a5c4e;
+    --accent2: #c8622a;
+    --muted: #6b6760;
+    --rule: #d9d4cc;
+    --card: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); font-family: 'DM Sans', sans-serif; color: var(--ink); font-size: 16px; line-height: 1.7; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .nav-name { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); letter-spacing: 0.01em; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero { max-width: 900px; margin: 0 auto; padding: 100px 48px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; animation: fadeUp 0.8s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 56px; line-height: 1.1; color: var(--ink); margin-bottom: 24px; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-bio { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+  .hero-contacts { display: flex; flex-direction: column; gap: 8px; }
+  .hero-contacts a { font-size: 14px; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .hero-contacts a:hover { color: var(--accent); }
+  .contact-icon { width: 28px; height: 28px; background: var(--ink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+  .hero-visual { display: flex; flex-direction: column; gap: 16px; }
+  .pill-group { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill { background: var(--card); border: 1px solid var(--rule); border-radius: 100px; padding: 8px 18px; font-size: 13px; font-weight: 500; color: var(--ink); transition: all 0.2s; }
+  .pill:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .pill.accent { background: var(--accent); color: white; border-color: var(--accent); }
+  .pill.warm { background: var(--accent2); color: white; border-color: var(--accent2); }
+
+  /* SECTION */
+  .section { max-width: 900px; margin: 0 auto; padding: 80px 48px; border-top: 1px solid var(--rule); animation: fadeUp 0.6s ease both; animation-delay: 0.2s; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 12px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--ink); margin-bottom: 40px; line-height: 1.2; }
+
+  /* EXPERIENCE */
+  .exp-grid { display: flex; flex-direction: column; gap: 0; }
+  .exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--rule); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-meta { padding-top: 2px; }
+  .exp-date { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .exp-org { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .exp-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); margin-bottom: 12px; line-height: 1.3; }
+  .exp-desc { font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .exp-desc li { margin-bottom: 6px; padding-left: 16px; position: relative; list-style: none; }
+  .exp-desc li::before { content: '—'; position: absolute; left: 0; color: var(--rule); font-weight: 300; }
+
+  /* RESEARCH */
+  .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .research-card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 32px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+  .research-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .research-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); }
+  .research-card.warm::before { background: var(--accent2); }
+  .research-card.vigilarche::before { background: #2C3E2D; }
+  .research-status { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 20px; }
+  .status-active { background: #e8f5f1; color: var(--accent); }
+  .status-inprogress { background: #fef2e8; color: var(--accent2); }
+  .status-live { background: #e8f0eb; color: #2C3E2D; }
+  .research-card h3 { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.3; color: var(--ink); margin-bottom: 12px; }
+  .research-rq { font-size: 13px; font-style: italic; color: var(--accent); line-height: 1.6; margin-bottom: 16px; padding: 12px 16px; background: #f0f7f4; border-radius: 6px; border-left: 3px solid var(--accent); }
+  .research-rq.warm { color: var(--accent2); background: #fdf4ee; border-left-color: var(--accent2); }
+  .research-rq.vigilarche-rq { color: #2C3E2D; background: #edf2ed; border-left-color: #2C3E2D; }
+  .research-body { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+  .research-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; background: var(--paper); color: var(--muted); border: 1px solid var(--rule); }
+  .findings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .finding { background: #fdf4ee; border: 1px solid #f0d9c8; border-radius: 8px; padding: 14px 16px; }
+  .finding-stat { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--accent2); line-height: 1.2; margin-bottom: 4px; }
+  .finding-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* Vigilarche findings */
+  .finding.vg { background: #edf2ed; border: 1px solid #c8d8c8; }
+  .finding.vg .finding-stat { color: #2C3E2D; }
+
+  .research-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; margin-top: 20px; border-bottom: 1px solid var(--accent); padding-bottom: 2px; transition: opacity 0.2s; }
+  .research-link:hover { opacity: 0.7; }
+  .research-link.vg-link { color: #2C3E2D; border-bottom-color: #2C3E2D; }
+
+  /* Full width card */
+  .research-card-full { grid-column: 1 / -1; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-block { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; }
+  .skill-block h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .skill-block ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .skill-block ul li { font-size: 13px; color: var(--muted); padding-left: 14px; position: relative; }
+  .skill-block ul li::before { content: '·'; position: absolute; left: 0; color: var(--accent2); font-size: 18px; line-height: 1.1; }
+
+  /* CERTS */
+  .cert-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .cert-card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; flex: 1; min-width: 280px; }
+  .cert-icon { width: 42px; height: 42px; border-radius: 8px; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; flex-shrink: 0; }
+  .cert-card.warm .cert-icon { background: var(--accent2); }
+  .cert-info h5 { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 3px; }
+  .cert-info p { font-size: 12px; color: var(--muted); }
+
+  /* EDUCATION */
+  .edu-card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 36px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start; }
+  .edu-school { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--ink); margin-bottom: 8px; }
+  .edu-degree { font-size: 15px; color: var(--muted); margin-bottom: 20px; }
+  .edu-courses h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 12px; }
+  .edu-courses ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .edu-courses ul li { font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; }
+  .edu-courses ul li::before { content: '→'; position: absolute; left: 0; font-size: 11px; color: var(--rule); top: 3px; }
+  .edu-badge { background: var(--accent); color: white; padding: 10px 18px; border-radius: 8px; font-size: 12px; font-weight: 600; text-align: center; white-space: nowrap; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--rule); padding: 40px 48px; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); }
+  footer strong { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--ink); }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    nav { padding: 0 24px; }
+    .nav-links { gap: 16px; }
+    .hero { grid-template-columns: 1fr; padding: 60px 24px 48px; }
+    .section { padding: 60px 24px; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .research-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .edu-card { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Casey J. Trejo</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="about" class="hero">
+  <div>
+    <div class="hero-eyebrow">Portfolio · Fort Worth, TX</div>
+    <h1>Casey J.<br><em>Trejo</em></h1>
+    <p class="hero-bio">
+      My path into AI started in healthcare — working alongside patients, documenting care, and learning early that the space between a person and the help they need is rarely just technical. That experience shapes everything about how I approach research and design. I care about who gets left out, what gets lost in translation, and how the tools we build either close that gap or quietly widen it.
+    </p>
+    <div class="hero-contacts">
+      <a href="tel:6825979610"><span class="contact-icon">☎</span>(682) 597-9610</a>
+      <a href="mailto:casey.trejo.ct@gmail.com"><span class="contact-icon">✉</span>casey.trejo.ct@gmail.com</a>
+      <a href="https://vigilarche.com" target="_blank"><span class="contact-icon">V</span>vigilarche.com</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="pill-group">
+      <span class="pill accent">Human-Centered AI</span>
+      <span class="pill warm">Clinical Care</span>
+      <span class="pill">UX Research</span>
+      <span class="pill">AI Ethics</span>
+      <span class="pill">Bilingual EN / ES</span>
+      <span class="pill">Brand Strategy</span>
+      <span class="pill">Product Design</span>
+      <span class="pill">Medical Scribing</span>
+      <span class="pill">Phlebotomy / EKG</span>
+      <span class="pill">HIPAA Compliant</span>
+      <span class="pill">EPIC · Athena</span>
+      <span class="pill">Figma</span>
+      <span class="pill">Python · Pandas</span>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH & PROJECTS -->
+<div id="research" class="section">
+  <div class="section-label">Research & Projects</div>
+  <div class="section-title">Work & Studies</div>
+
+  <div class="research-grid">
+
+    <!-- VIGILARCHE — featured full width -->
+    <div class="research-card vigilarche research-card-full">
+      <span class="research-status status-live">Live · 2026</span>
+      <h3>Vigilarche — Human-AI Bridging Company</h3>
+      <div class="research-rq vigilarche-rq">
+        "How do we close the gap between the speed of artificial intelligence and the humans who must understand, direct, and shape it?"
+      </div>
+      <p class="research-body">
+        Founded and built Vigilarche from the ground up — a human-AI bridging company operating on the belief that humans and AI must rise together, not in opposition. Developed the complete brand identity, philosophy, visual system, and product strategy. Designed and launched the company website and published the first product: an AI Prompt Pack for Nursing Students, helping healthcare learners deepen clinical understanding through intentional AI use.
+      </p>
+      <p class="research-body">
+        The work spans brand strategy, front-end web development, AI product design, and human-centered philosophy — rooted in the same gap identified across years of clinical and academic work: powerful tools, and people without a guide on how to use them well.
+      </p>
+
+      <div class="findings-grid">
+        <div class="finding vg">
+          <div class="finding-stat">Live</div>
+          <div class="finding-label">vigilarche.com — fully designed and launched</div>
+        </div>
+        <div class="finding vg">
+          <div class="finding-stat">30</div>
+          <div class="finding-label">prompts across 4 clinical categories in first product</div>
+        </div>
+        <div class="finding vg">
+          <div class="finding-stat">Full</div>
+          <div class="finding-label">brand identity — logo, palette, typography, philosophy</div>
+        </div>
+        <div class="finding vg">
+          <div class="finding-stat">Tier 1→4</div>
+          <div class="finding-label">product ecosystem from individuals to government</div>
+        </div>
+      </div>
+
+      <div class="research-tags" style="margin-top: 20px;">
+        <span class="tag">AI Ethics</span>
+        <span class="tag">Brand Strategy</span>
+        <span class="tag">Product Design</span>
+        <span class="tag">Human-Centered AI</span>
+        <span class="tag">Front-End Development</span>
+        <span class="tag">AI Literacy</span>
+        <span class="tag">Healthcare</span>
+        <span class="tag">Entrepreneurship</span>
+      </div>
+      <a href="https://vigilarche.com" target="_blank" class="research-link vg-link">Visit Vigilarche →</a>
+    </div>
+
+    <!-- SURVEY STUDY -->
+    <div class="research-card">
+      <span class="research-status status-active">Active · In Progress</span>
+      <h3>AI as a Healthcare Substitute Among Uninsured Young Adults</h3>
+      <div class="research-rq">
+        "Are young adults (18–30) using free AI tools as a substitute for healthcare they can't afford, and how does that shape their health decisions?"
+      </div>
+      <p class="research-body">
+        An original survey study examining the intersection of healthcare access, cost, and AI adoption in young adults aged 18–30. The study screens for participants who have used AI tools for health-related questions and explores motivations including cost barriers, insurance status, trust levels, and emotional outcomes. A follow-up interview component allows for deeper qualitative insight.
+      </p>
+      <p class="research-body">
+        <em>Status: Data collection in progress. Findings and analysis to be added upon completion.</em>
+      </p>
+      <div class="research-tags">
+        <span class="tag">Survey Research</span>
+        <span class="tag">Healthcare Access</span>
+        <span class="tag">AI Ethics</span>
+        <span class="tag">UX Research</span>
+        <span class="tag">Health Equity</span>
+      </div>
+      <a href="ai_health_survey.html" class="research-link">View Survey Instrument →</a>
+    </div>
+
+    <!-- CAPSTONE -->
+    <div class="research-card warm">
+      <span class="research-status status-inprogress">Capstone · Completed</span>
+      <h3>Signal and Soul: AI Usage, Parasocial Bonds, and Human Connection Across Socioeconomic Groups</h3>
+      <div class="research-rq warm">
+        "As AI becomes embedded in daily life, are people forming emotional bonds with AI — and who pays the highest price?"
+      </div>
+      <p class="research-body">
+        A data science and human-centered analysis of 503 respondents examining how AI usage frequency relates to loneliness, human social support, parasocial bonding, and cultural identity across income tiers. Dataset modeled on CDC Household Pulse Survey, Pew Research AI adoption data, and Meta-Gallup Global State of Social Connections. Cleaned and analyzed in Python using Pandas.
+      </p>
+
+      <div class="findings-grid">
+        <div class="finding">
+          <div class="finding-stat">r = 0.596</div>
+          <div class="finding-label">AI usage ↔ loneliness correlation</div>
+        </div>
+        <div class="finding">
+          <div class="finding-stat">29.7%</div>
+          <div class="finding-label">of daily AI users felt emotionally attached to AI</div>
+        </div>
+        <div class="finding">
+          <div class="finding-stat">3.65 → 6.64</div>
+          <div class="finding-label">loneliness score: non-users to daily users</div>
+        </div>
+        <div class="finding">
+          <div class="finding-stat">5.60 vs 4.00</div>
+          <div class="finding-label">cultural identity: low vs high income</div>
+        </div>
+      </div>
+
+      <p class="research-body" style="margin-top: 16px;">
+        Key finding: low-income respondents showed the highest human social support and cultural identity scores — and the lowest AI usage — suggesting communities with less tech access may be preserving social bonds that high-adoption groups are quietly eroding.
+      </p>
+
+      <div class="research-tags">
+        <span class="tag">Python · Pandas</span>
+        <span class="tag">EDA</span>
+        <span class="tag">Parasocial Relationships</span>
+        <span class="tag">Health Equity</span>
+        <span class="tag">AI Ethics</span>
+        <span class="tag">Human-Centered AI</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="experience" class="section">
+  <div class="section-label">Experience</div>
+  <div class="section-title">Clinical & Professional Background</div>
+
+  <div class="exp-grid">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">2026 – Present</div>
+        <div class="exp-org">Vigilarche<br>Fort Worth, TX</div>
+      </div>
+      <div>
+        <div class="exp-title">Founder</div>
+        <ul class="exp-desc">
+          <li>Founded and launched a human-AI bridging company focused on making AI oversight, literacy, and intentional use accessible at every scale.</li>
+          <li>Developed complete brand identity, product strategy, and company website from the ground up.</li>
+          <li>Published first product — an AI Prompt Pack for Nursing Students — combining clinical domain expertise with AI product design.</li>
+          <li>Building a tiered product ecosystem from individual toolkits to enterprise and government oversight frameworks.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Aug 2024 – Present</div>
+        <div class="exp-org">Cook Children's Medical Center<br>Fort Worth, TX</div>
+      </div>
+      <div>
+        <div class="exp-title">Patient Care Technician — Trauma Surgery</div>
+        <ul class="exp-desc">
+          <li>Supported trauma team with bedside care, vitals monitoring, mobility, and emergency response.</li>
+          <li>Maintained documentation logs and assisted with coordination of patient care plans.</li>
+          <li>Ensured adherence to hospital safety protocols and infection control standards.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Aug 2023 – Mar 2024</div>
+        <div class="exp-org">Texas Health Resources — Emergency Department<br>Fort Worth, TX</div>
+      </div>
+      <div>
+        <div class="exp-title">Medical Scribe</div>
+        <ul class="exp-desc">
+          <li>Documented physician-patient encounters, chief complaints, diagnostics, and treatment plans in real time.</li>
+          <li>Managed EMR entries and supported clinical staff with rapid documentation during emergencies.</li>
+          <li>Reviewed previous records, labs, and imaging to support continuity of care.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Apr 2023 – Aug 2023</div>
+        <div class="exp-org">Fort Worth Heart<br>Fort Worth, TX</div>
+      </div>
+      <div>
+        <div class="exp-title">Medical Scribe — Cardiology</div>
+        <ul class="exp-desc">
+          <li>Recorded cardiovascular assessments, procedures, and specialist recommendations.</li>
+          <li>Maintained complete and accurate EMRs for patients undergoing diagnostics and interventions.</li>
+          <li>Assisted with documentation of catheterizations, stress tests, and imaging.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="section">
+  <div class="section-label">Skills</div>
+  <div class="section-title">Areas of Expertise</div>
+
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Technology & AI</h4>
+      <ul>
+        <li>HTML & CSS</li>
+        <li>Figma (UX/UI Design)</li>
+        <li>Python · Pandas · NumPy</li>
+        <li>AI Bias Testing</li>
+        <li>AI Ethics & Governance</li>
+        <li>Human-Centered UX</li>
+        <li>Usability Testing</li>
+        <li>AI Prompt Engineering</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h4>Clinical</h4>
+      <ul>
+        <li>Medical Scribing (EPIC, Athena)</li>
+        <li>Phlebotomy</li>
+        <li>EKG Administration</li>
+        <li>Vitals Monitoring</li>
+        <li>Medical Terminology</li>
+        <li>Anatomy & Lab Techniques</li>
+        <li>Microscopy · Dissection · Staining</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h4>Design & Strategy</h4>
+      <ul>
+        <li>Brand Identity Design</li>
+        <li>Product Strategy</li>
+        <li>Front-End Development</li>
+        <li>Content & UX Writing</li>
+        <li>Digital Product Design</li>
+        <li>Bilingual: English & Spanish</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h4>Compliance & Research</h4>
+      <ul>
+        <li>HIPAA Compliance</li>
+        <li>GCP-Aligned Workflows</li>
+        <li>Trial Master File Familiarity</li>
+        <li>Survey Research Design</li>
+        <li>Exploratory Data Analysis</li>
+        <li>Cross-Team Communication</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div id="education" class="section">
+  <div class="section-label">Education</div>
+  <div class="section-title">Academic Background</div>
+
+  <div class="edu-card">
+    <div>
+      <div class="edu-school">Texas Tech University</div>
+      <div class="edu-degree">Bachelor of Science in Human-Centered Artificial Intelligence</div>
+      <div class="edu-courses">
+        <h5>Completed Coursework</h5>
+        <ul>
+          <li>Data Analysis with Python (Pandas, NumPy; Exploratory Data Analysis)</li>
+          <li>Introduction to Machine Learning (Supervised & Unsupervised Methods)</li>
+          <li>Research Methods in Human-Computer Interaction (UX Research, Usability Testing)</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="edu-badge">Expected<br>Dec 2026</div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="cert-row">
+    <div class="cert-card">
+      <div class="cert-icon">🏥</div>
+      <div class="cert-info">
+        <h5>Patient Care Technician / Assistant (CPCT/A)</h5>
+        <p>National Healthcareer Association · April 2023</p>
+      </div>
+    </div>
+    <div class="cert-card warm">
+      <div class="cert-icon">❤️</div>
+      <div class="cert-info">
+        <h5>Basic Life Support Provider (BLS)</h5>
+        <p>American Heart Association · December 2022</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div><strong>Casey J. Trejo</strong><br>Human-Centered AI · Fort Worth, TX</div>
+  <div>
+    <a href="https://vigilarche.com" target="_blank" style="color: #2a5c4e; text-decoration: none; font-weight: 600;">vigilarche.com</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:casey.trejo.ct@gmail.com" style="color: var(--muted); text-decoration: none;">casey.trejo.ct@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
